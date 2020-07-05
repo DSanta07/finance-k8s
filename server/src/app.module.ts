@@ -4,8 +4,8 @@ import { AppService } from "./app.service";
 import { WorkerModule } from "./worker/worker.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { UserModule } from './user/user.module';
-import { KickstarterModule } from './kickstarter/kickstarter.module';
+import { UserModule } from "./user/user.module";
+import { KickstarterModule } from "./kickstarter/kickstarter.module";
 import databaseConfig from "./config/database.config";
 import { MulterModule } from "@nestjs/platform-express";
 @Module({
@@ -15,7 +15,7 @@ import { MulterModule } from "@nestjs/platform-express";
     }),
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [databaseConfig]
+      load: [databaseConfig],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -27,15 +27,15 @@ import { MulterModule } from "@nestjs/platform-express";
         password: configService.get<string>("database.password"),
         database: configService.get<string>("database.dbName"),
         entities: ["dist/**/*.entity{.ts,.js}"],
-        // synchronize: true
+        synchronize: false,
       }),
-      inject: [ConfigService]
+      inject: [ConfigService],
     }),
     WorkerModule,
     UserModule,
     KickstarterModule,
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService],
 })
-export class AppModule {} 
+export class AppModule {}
