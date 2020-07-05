@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserRepository = void 0;
 const typeorm_1 = require("typeorm");
 const kickstarter_entity_1 = require("./kickstarter.entity");
 let UserRepository = class UserRepository extends typeorm_1.Repository {
