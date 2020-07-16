@@ -104,16 +104,6 @@
           title: 'Machine Learning',
           to: '/pages/machine-learning',
         },
-        {
-          icon: 'mdi-account',
-          title: 'user',
-          to: '/pages/user',
-        },
-        {
-          icon: 'mdi-account',
-          title: 'Users',
-          to: '/pages/users',
-        },
       ],
     }),
 
