@@ -46,7 +46,7 @@ package-lock.json
 */.development.env
 .development.env
 .env
-
+env/
 # Log files
 npm-debug.log*
 yarn-debug.log*
