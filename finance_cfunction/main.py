@@ -26,7 +26,7 @@ def one_hot_encoding(raw_prediction_input, categorical_list, category_key):
 
 
 def create_model():
-    input_size = 4
+    input_size = 10
     output_size = 2
     hidden_layer_size = 50
     model = Sequential([
@@ -89,21 +89,21 @@ def kickstarter_predict(request):
         to_predict_input_list.append(temp)
     # Load scaler
     print('Loading Scaler...')
-    download_blob('finance-model-bucket', 'scaler_kickstarter_v3.pkl',
-                  '/tmp/scaler_kickstarter_v3.pkl')
-    scaler = load(open('/tmp/scaler_kickstarter_v3.pkl', 'rb'))
+    download_blob('finance-model-bucket', 'scaler_kickstarter_v1.pkl',
+                  '/tmp/scaler_kickstarter_v1.pkl')
+    scaler = load(open('/tmp/scaler_kickstarter_v1.pkl', 'rb'))
     # Convert list to Numpy Array
     to_predict_input_array = np.array([to_predict_input_list])
     # Standardize the array
     standardized_input_array = scaler.transform(to_predict_input_array)
     # Create and load weights
     print('Loading Model Weights...')
-    download_blob('finance-model-bucket', 'kickstarter_v3_weights.index',
-                  '/tmp/kickstarter_v3_weights.index')
-    download_blob('finance-model-bucket', 'kickstarter_v3_weights.data-00000-of-00001',
-                  '/tmp/kickstarter_v3_weights.data-00000-of-00001')
+    download_blob('finance-model-bucket', 'kickstarter_v1_weights.index',
+                  '/tmp/kickstarter_v1_weights.index')
+    download_blob('finance-model-bucket', 'kickstarter_v1_weights.data-00000-of-00001',
+                  '/tmp/kickstarter_v1_weights.data-00000-of-00001')
     kickstarter_model = create_model()
-    kickstarter_model.load_weights('/tmp/kickstarter_v3_weights')
+    kickstarter_model.load_weights('/tmp/kickstarter_v1_weights')
     # Predict the input with the trained model
     prediction = kickstarter_model.predict(standardized_input_array)
     prediction_probability = round(np.float64(prediction[0, 1]), 2)*100
