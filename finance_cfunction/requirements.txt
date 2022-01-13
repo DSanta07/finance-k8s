@@ -2,7 +2,7 @@
 # package>=version
 tensorflow==2.0.0b0
 google-cloud-storage==1.16.1
-Pillow==6.0.0
+Pillow==9.0.0
 numpy
 scikit-learn
 scipy
